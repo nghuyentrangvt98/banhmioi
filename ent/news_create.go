@@ -32,6 +32,14 @@ func (nc *NewsCreate) SetSubtitle(s string) *NewsCreate {
 	return nc
 }
 
+// SetNillableSubtitle sets the "subtitle" field if the given value is not nil.
+func (nc *NewsCreate) SetNillableSubtitle(s *string) *NewsCreate {
+	if s != nil {
+		nc.SetSubtitle(*s)
+	}
+	return nc
+}
+
 // SetContent sets the "content" field.
 func (nc *NewsCreate) SetContent(s string) *NewsCreate {
 	nc.mutation.SetContent(s)
@@ -59,6 +67,14 @@ func (nc *NewsCreate) SetCategory(s string) *NewsCreate {
 // SetProductURL sets the "product_url" field.
 func (nc *NewsCreate) SetProductURL(s string) *NewsCreate {
 	nc.mutation.SetProductURL(s)
+	return nc
+}
+
+// SetNillableProductURL sets the "product_url" field if the given value is not nil.
+func (nc *NewsCreate) SetNillableProductURL(s *string) *NewsCreate {
+	if s != nil {
+		nc.SetProductURL(*s)
+	}
 	return nc
 }
 
@@ -111,9 +127,6 @@ func (nc *NewsCreate) check() error {
 	if _, ok := nc.mutation.Title(); !ok {
 		return &ValidationError{Name: "title", err: errors.New(`ent: missing required field "News.title"`)}
 	}
-	if _, ok := nc.mutation.Subtitle(); !ok {
-		return &ValidationError{Name: "subtitle", err: errors.New(`ent: missing required field "News.subtitle"`)}
-	}
 	if _, ok := nc.mutation.Content(); !ok {
 		return &ValidationError{Name: "content", err: errors.New(`ent: missing required field "News.content"`)}
 	}
@@ -125,9 +138,6 @@ func (nc *NewsCreate) check() error {
 	}
 	if _, ok := nc.mutation.Category(); !ok {
 		return &ValidationError{Name: "category", err: errors.New(`ent: missing required field "News.category"`)}
-	}
-	if _, ok := nc.mutation.ProductURL(); !ok {
-		return &ValidationError{Name: "product_url", err: errors.New(`ent: missing required field "News.product_url"`)}
 	}
 	if _, ok := nc.mutation.ImageURL(); !ok {
 		return &ValidationError{Name: "image_url", err: errors.New(`ent: missing required field "News.image_url"`)}

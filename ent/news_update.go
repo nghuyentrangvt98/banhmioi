@@ -40,6 +40,20 @@ func (nu *NewsUpdate) SetSubtitle(s string) *NewsUpdate {
 	return nu
 }
 
+// SetNillableSubtitle sets the "subtitle" field if the given value is not nil.
+func (nu *NewsUpdate) SetNillableSubtitle(s *string) *NewsUpdate {
+	if s != nil {
+		nu.SetSubtitle(*s)
+	}
+	return nu
+}
+
+// ClearSubtitle clears the value of the "subtitle" field.
+func (nu *NewsUpdate) ClearSubtitle() *NewsUpdate {
+	nu.mutation.ClearSubtitle()
+	return nu
+}
+
 // SetContent sets the "content" field.
 func (nu *NewsUpdate) SetContent(s string) *NewsUpdate {
 	nu.mutation.SetContent(s)
@@ -67,6 +81,20 @@ func (nu *NewsUpdate) SetCategory(s string) *NewsUpdate {
 // SetProductURL sets the "product_url" field.
 func (nu *NewsUpdate) SetProductURL(s string) *NewsUpdate {
 	nu.mutation.SetProductURL(s)
+	return nu
+}
+
+// SetNillableProductURL sets the "product_url" field if the given value is not nil.
+func (nu *NewsUpdate) SetNillableProductURL(s *string) *NewsUpdate {
+	if s != nil {
+		nu.SetProductURL(*s)
+	}
+	return nu
+}
+
+// ClearProductURL clears the value of the "product_url" field.
+func (nu *NewsUpdate) ClearProductURL() *NewsUpdate {
+	nu.mutation.ClearProductURL()
 	return nu
 }
 
@@ -123,6 +151,9 @@ func (nu *NewsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	if value, ok := nu.mutation.Subtitle(); ok {
 		_spec.SetField(news.FieldSubtitle, field.TypeString, value)
 	}
+	if nu.mutation.SubtitleCleared() {
+		_spec.ClearField(news.FieldSubtitle, field.TypeString)
+	}
 	if value, ok := nu.mutation.Content(); ok {
 		_spec.SetField(news.FieldContent, field.TypeString, value)
 	}
@@ -137,6 +168,9 @@ func (nu *NewsUpdate) sqlSave(ctx context.Context) (n int, err error) {
 	}
 	if value, ok := nu.mutation.ProductURL(); ok {
 		_spec.SetField(news.FieldProductURL, field.TypeString, value)
+	}
+	if nu.mutation.ProductURLCleared() {
+		_spec.ClearField(news.FieldProductURL, field.TypeString)
 	}
 	if value, ok := nu.mutation.ImageURL(); ok {
 		_spec.SetField(news.FieldImageURL, field.TypeString, value)
@@ -173,6 +207,20 @@ func (nuo *NewsUpdateOne) SetSubtitle(s string) *NewsUpdateOne {
 	return nuo
 }
 
+// SetNillableSubtitle sets the "subtitle" field if the given value is not nil.
+func (nuo *NewsUpdateOne) SetNillableSubtitle(s *string) *NewsUpdateOne {
+	if s != nil {
+		nuo.SetSubtitle(*s)
+	}
+	return nuo
+}
+
+// ClearSubtitle clears the value of the "subtitle" field.
+func (nuo *NewsUpdateOne) ClearSubtitle() *NewsUpdateOne {
+	nuo.mutation.ClearSubtitle()
+	return nuo
+}
+
 // SetContent sets the "content" field.
 func (nuo *NewsUpdateOne) SetContent(s string) *NewsUpdateOne {
 	nuo.mutation.SetContent(s)
@@ -200,6 +248,20 @@ func (nuo *NewsUpdateOne) SetCategory(s string) *NewsUpdateOne {
 // SetProductURL sets the "product_url" field.
 func (nuo *NewsUpdateOne) SetProductURL(s string) *NewsUpdateOne {
 	nuo.mutation.SetProductURL(s)
+	return nuo
+}
+
+// SetNillableProductURL sets the "product_url" field if the given value is not nil.
+func (nuo *NewsUpdateOne) SetNillableProductURL(s *string) *NewsUpdateOne {
+	if s != nil {
+		nuo.SetProductURL(*s)
+	}
+	return nuo
+}
+
+// ClearProductURL clears the value of the "product_url" field.
+func (nuo *NewsUpdateOne) ClearProductURL() *NewsUpdateOne {
+	nuo.mutation.ClearProductURL()
 	return nuo
 }
 
@@ -286,6 +348,9 @@ func (nuo *NewsUpdateOne) sqlSave(ctx context.Context) (_node *News, err error) 
 	if value, ok := nuo.mutation.Subtitle(); ok {
 		_spec.SetField(news.FieldSubtitle, field.TypeString, value)
 	}
+	if nuo.mutation.SubtitleCleared() {
+		_spec.ClearField(news.FieldSubtitle, field.TypeString)
+	}
 	if value, ok := nuo.mutation.Content(); ok {
 		_spec.SetField(news.FieldContent, field.TypeString, value)
 	}
@@ -300,6 +365,9 @@ func (nuo *NewsUpdateOne) sqlSave(ctx context.Context) (_node *News, err error) 
 	}
 	if value, ok := nuo.mutation.ProductURL(); ok {
 		_spec.SetField(news.FieldProductURL, field.TypeString, value)
+	}
+	if nuo.mutation.ProductURLCleared() {
+		_spec.ClearField(news.FieldProductURL, field.TypeString)
 	}
 	if value, ok := nuo.mutation.ImageURL(); ok {
 		_spec.SetField(news.FieldImageURL, field.TypeString, value)

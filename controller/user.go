@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"strconv"
+
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/labstack/echo/v4"
 	"github.com/nghuyentrangvt98/banhmioi/config"
@@ -37,7 +39,7 @@ func Login(c echo.Context) error {
 	}
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
-	claims["username"] = "username"
+	claims["sub"] = strconv.Itoa(user.ID)
 	jwtToken, err := token.SignedString(config.SECRETKEY)
 	if err != nil {
 		return err

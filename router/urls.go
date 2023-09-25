@@ -21,4 +21,8 @@ func Routing(e *echo.Echo) {
 	e.GET("/products/:id", controller.GetProduct)
 	e.GET("/news", controller.GetMultiNews)
 	e.GET("/news/:id", controller.GetNews)
+	e.POST("/carts", controller.CreateCart, echojwt.JWT(config.SECRETKEY))
+	e.GET("/carts", controller.GetCarts, echojwt.JWT(config.SECRETKEY))
+	e.POST("/orders", controller.CreateOrder, echojwt.JWT(config.SECRETKEY))
+	e.GET("/orders", controller.GetOrders, echojwt.JWT(config.SECRETKEY))
 }

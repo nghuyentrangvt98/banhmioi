@@ -214,6 +214,16 @@ func SubtitleHasSuffix(v string) predicate.News {
 	return predicate.News(sql.FieldHasSuffix(FieldSubtitle, v))
 }
 
+// SubtitleIsNil applies the IsNil predicate on the "subtitle" field.
+func SubtitleIsNil() predicate.News {
+	return predicate.News(sql.FieldIsNull(FieldSubtitle))
+}
+
+// SubtitleNotNil applies the NotNil predicate on the "subtitle" field.
+func SubtitleNotNil() predicate.News {
+	return predicate.News(sql.FieldNotNull(FieldSubtitle))
+}
+
 // SubtitleEqualFold applies the EqualFold predicate on the "subtitle" field.
 func SubtitleEqualFold(v string) predicate.News {
 	return predicate.News(sql.FieldEqualFold(FieldSubtitle, v))
@@ -512,6 +522,16 @@ func ProductURLHasPrefix(v string) predicate.News {
 // ProductURLHasSuffix applies the HasSuffix predicate on the "product_url" field.
 func ProductURLHasSuffix(v string) predicate.News {
 	return predicate.News(sql.FieldHasSuffix(FieldProductURL, v))
+}
+
+// ProductURLIsNil applies the IsNil predicate on the "product_url" field.
+func ProductURLIsNil() predicate.News {
+	return predicate.News(sql.FieldIsNull(FieldProductURL))
+}
+
+// ProductURLNotNil applies the NotNil predicate on the "product_url" field.
+func ProductURLNotNil() predicate.News {
+	return predicate.News(sql.FieldNotNull(FieldProductURL))
 }
 
 // ProductURLEqualFold applies the EqualFold predicate on the "product_url" field.
