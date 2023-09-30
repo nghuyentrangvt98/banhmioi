@@ -29,12 +29,6 @@ func (ou *OrderUpdate) Where(ps ...predicate.Order) *OrderUpdate {
 	return ou
 }
 
-// SetName sets the "name" field.
-func (ou *OrderUpdate) SetName(s string) *OrderUpdate {
-	ou.mutation.SetName(s)
-	return ou
-}
-
 // SetPhone sets the "phone" field.
 func (ou *OrderUpdate) SetPhone(s string) *OrderUpdate {
 	ou.mutation.SetPhone(s)
@@ -195,9 +189,6 @@ func (ou *OrderUpdate) sqlSave(ctx context.Context) (n int, err error) {
 			}
 		}
 	}
-	if value, ok := ou.mutation.Name(); ok {
-		_spec.SetField(order.FieldName, field.TypeString, value)
-	}
 	if value, ok := ou.mutation.Phone(); ok {
 		_spec.SetField(order.FieldPhone, field.TypeString, value)
 	}
@@ -314,12 +305,6 @@ type OrderUpdateOne struct {
 	fields   []string
 	hooks    []Hook
 	mutation *OrderMutation
-}
-
-// SetName sets the "name" field.
-func (ouo *OrderUpdateOne) SetName(s string) *OrderUpdateOne {
-	ouo.mutation.SetName(s)
-	return ouo
 }
 
 // SetPhone sets the "phone" field.
@@ -511,9 +496,6 @@ func (ouo *OrderUpdateOne) sqlSave(ctx context.Context) (_node *Order, err error
 				ps[i](selector)
 			}
 		}
-	}
-	if value, ok := ouo.mutation.Name(); ok {
-		_spec.SetField(order.FieldName, field.TypeString, value)
 	}
 	if value, ok := ouo.mutation.Phone(); ok {
 		_spec.SetField(order.FieldPhone, field.TypeString, value)

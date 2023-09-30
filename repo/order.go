@@ -17,7 +17,6 @@ func CreateOrder(ctx context.Context, orderCreate model.OrderCreate, user_id int
 	order := config.Client.Order.Create().
 		SetAddress(orderCreate.Address).
 		SetDiscount(orderCreate.Discount).
-		SetName(orderCreate.Name).
 		SetNote(orderCreate.Note).
 		SetPhone(orderCreate.Phone).
 		SetTotal(orderCreate.Total).

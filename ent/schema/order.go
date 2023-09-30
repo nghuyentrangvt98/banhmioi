@@ -15,7 +15,6 @@ type Order struct {
 func (Order) Fields() []ent.Field {
 	return []ent.Field{
 		field.Int("id"),
-		field.String("name"),
 		field.String("phone"),
 		field.String("address"),
 		field.String("note").Optional(),

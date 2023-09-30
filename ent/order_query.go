@@ -335,12 +335,12 @@ func (oq *OrderQuery) WithUser(opts ...func(*UserQuery)) *OrderQuery {
 // Example:
 //
 //	var v []struct {
-//		Name string `json:"name,omitempty"`
+//		Phone string `json:"phone,omitempty"`
 //		Count int `json:"count,omitempty"`
 //	}
 //
 //	client.Order.Query().
-//		GroupBy(order.FieldName).
+//		GroupBy(order.FieldPhone).
 //		Aggregate(ent.Count()).
 //		Scan(ctx, &v)
 func (oq *OrderQuery) GroupBy(field string, fields ...string) *OrderGroupBy {
@@ -358,11 +358,11 @@ func (oq *OrderQuery) GroupBy(field string, fields ...string) *OrderGroupBy {
 // Example:
 //
 //	var v []struct {
-//		Name string `json:"name,omitempty"`
+//		Phone string `json:"phone,omitempty"`
 //	}
 //
 //	client.Order.Query().
-//		Select(order.FieldName).
+//		Select(order.FieldPhone).
 //		Scan(ctx, &v)
 func (oq *OrderQuery) Select(fields ...string) *OrderSelect {
 	oq.ctx.Fields = append(oq.ctx.Fields, fields...)

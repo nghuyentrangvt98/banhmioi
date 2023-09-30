@@ -21,12 +21,6 @@ type OrderCreate struct {
 	hooks    []Hook
 }
 
-// SetName sets the "name" field.
-func (oc *OrderCreate) SetName(s string) *OrderCreate {
-	oc.mutation.SetName(s)
-	return oc
-}
-
 // SetPhone sets the "phone" field.
 func (oc *OrderCreate) SetPhone(s string) *OrderCreate {
 	oc.mutation.SetPhone(s)
@@ -139,9 +133,6 @@ func (oc *OrderCreate) ExecX(ctx context.Context) {
 
 // check runs all checks and user-defined validators on the builder.
 func (oc *OrderCreate) check() error {
-	if _, ok := oc.mutation.Name(); !ok {
-		return &ValidationError{Name: "name", err: errors.New(`ent: missing required field "Order.name"`)}
-	}
 	if _, ok := oc.mutation.Phone(); !ok {
 		return &ValidationError{Name: "phone", err: errors.New(`ent: missing required field "Order.phone"`)}
 	}
@@ -185,10 +176,6 @@ func (oc *OrderCreate) createSpec() (*Order, *sqlgraph.CreateSpec) {
 	if id, ok := oc.mutation.ID(); ok {
 		_node.ID = id
 		_spec.ID.Value = id
-	}
-	if value, ok := oc.mutation.Name(); ok {
-		_spec.SetField(order.FieldName, field.TypeString, value)
-		_node.Name = value
 	}
 	if value, ok := oc.mutation.Phone(); ok {
 		_spec.SetField(order.FieldPhone, field.TypeString, value)
