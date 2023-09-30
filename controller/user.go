@@ -18,7 +18,7 @@ func CreateUser(c echo.Context) error {
 		return nil
 	}
 	user := repo.CreateUser(c.Request().Context(), userModel)
-	c.JSON(200, user)
+	c.JSON(200, model.FromSchemaUser(user, ""))
 	return nil
 }
 

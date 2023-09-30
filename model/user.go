@@ -18,6 +18,7 @@ type UserLogin struct {
 }
 
 type UserResponse struct {
+	Id       int    `json:"id,omitempty"`
 	Username string `json:"username,omitempty"`
 	Fullname string `json:"-"`
 	Gender   string `json:"-"`
@@ -30,6 +31,7 @@ type UserResponse struct {
 
 func FromSchemaUser(user *ent.User, jwt string) *UserResponse {
 	return &UserResponse{
+		Id:       user.ID,
 		Username: user.Username,
 		JWT:      jwt,
 	}
