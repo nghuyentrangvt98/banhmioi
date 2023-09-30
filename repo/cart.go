@@ -29,7 +29,7 @@ func GetMultiCarts(ctx context.Context, user_id int) model.CartList {
 	query = query.Where(cart.StatusEQ(cart.StatusProcessing))
 	query = query.Where(cart.HasUserWith(user.ID(user_id)))
 	query = query.Order(cart.OrderOption(cart.ByID()))
-	carts, err := query.All(ctx)
+	carts, err := query.WithProduct().All(ctx)
 	if err != nil {
 		slog.Info(err.Error())
 	}
